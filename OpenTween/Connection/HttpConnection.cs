@@ -110,9 +110,6 @@ namespace OpenTween
 
             webReq.UserAgent = Networking.GetUserAgentString();
 
-            // KeepAlive無効なサーバー(Twitter等)に使用すると、タイムアウト後にWebExceptionが発生する場合あり
-            webReq.KeepAlive = false;
-
             return webReq;
         }
 
@@ -260,9 +257,6 @@ namespace OpenTween
             if (this.UseCookie) webReq.CookieContainer = this.cookieContainer;
             //タイムアウト設定
             webReq.Timeout = this.InstanceTimeout ?? (int)Networking.DefaultTimeout.TotalMilliseconds;
-
-            // KeepAlive無効なサーバー(Twitter等)に使用すると、タイムアウト後にWebExceptionが発生する場合あり
-            webReq.KeepAlive = false;
 
             return webReq;
         }

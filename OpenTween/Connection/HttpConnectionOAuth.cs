@@ -141,6 +141,9 @@ namespace OpenTween
 			// OAuth認証ヘッダを付加
 			this.AppendOAuthInfo( webReq, param, token, tokenSecret );
 
+			// KeepAlive無効なサーバー(Twitter等)に使用すると、タイムアウト後にWebExceptionが発生する場合あり
+			webReq.KeepAlive = false;
+
 			HttpStatusCode code;
 			if ( content == null )
 				code = this.GetResponse( webReq, headerInfo );
@@ -173,6 +176,9 @@ namespace OpenTween
 			HttpWebRequest webReq = this.CreateRequest( method, requestUri, param, binary );
 			// OAuth認証ヘッダを付加
 			this.AppendOAuthInfo( webReq, null, token, tokenSecret );
+
+			// KeepAlive無効なサーバー(Twitter等)に使用すると、タイムアウト後にWebExceptionが発生する場合あり
+			webReq.KeepAlive = false;
 
 			HttpStatusCode code;
 			if ( content == null )
